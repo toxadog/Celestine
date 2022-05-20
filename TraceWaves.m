@@ -178,7 +178,7 @@ for i=1:floor(length(tiff_files_Cortex)/2)-10
                 Waves.(horzcat('p',int2str(PeaksArrayIndPrevious(MinDistPos(j))))).x=...
                     [Waves.(horzcat('p',int2str(PeaksArrayIndPrevious(MinDistPos(j))))).x;PeaksArray(j,1)];
                 Waves.(horzcat('p',int2str(PeaksArrayIndPrevious(MinDistPos(j))))).y=...
-                    [Waves.(horzcat('p',int2str(PeaksArrayIndPrevious(MinDistPos(j))))).y; PeaksArray(j,2)];
+                    [Waves.(horzcat('p',int2str(PeaksArrayIndPrevious(MinDistPos(j))))).y; size(A,2)+1-PeaksArray(j,2)];
                 Waves.(horzcat('p',int2str(PeaksArrayIndPrevious(MinDistPos(j))))).tn=i;
                 Waves.(horzcat('p',int2str(wavecounter))).Amp=...
                     [Waves.(horzcat('p',int2str(wavecounter))).Amp;A(PeaksArray(j,2),PeaksArray(j,1))];
@@ -186,7 +186,7 @@ for i=1:floor(length(tiff_files_Cortex)/2)-10
             else
                 wavecounter=wavecounter+1;
                 Waves.(horzcat('p',int2str(wavecounter))).x=PeaksArray(j,1);
-                Waves.(horzcat('p',int2str(wavecounter))).y=PeaksArray(j,2);
+                Waves.(horzcat('p',int2str(wavecounter))).y=size(A,2)+1-PeaksArray(j,2);
                 Waves.(horzcat('p',int2str(wavecounter))).t0=i;
                 Waves.(horzcat('p',int2str(wavecounter))).tn=i;
                 Waves.(horzcat('p',int2str(wavecounter))).Amp=A(PeaksArray(j,2),PeaksArray(j,1));          
