@@ -224,7 +224,7 @@ WaveNames=fieldnames(Waves);
 figure;
 hold on;
 for i=1:numel(WaveNames)
-    plot(305-Waves.(WaveNames{i}).y,305-Waves.(WaveNames{i}).x);
+    plot(Waves.(WaveNames{i}).x,Waves.(WaveNames{i}).y);
 end
 %%
 WaveNames=fieldnames(Waves);
@@ -238,7 +238,7 @@ for i=1:numel(WaveNames)
         tempy=medfilt1((Waves.(WaveNames{i}).y),2);
         tempx=tempx(2:end);
         tempy=tempy(2:end);
-        plot(305-tempy,305-tempx,'color',[1-0.3*i/NumColors 1-1*i/NumColors 1-1*i/NumColors]);
+        plot(tempx,size(A,2)+1-tempy,'color',[1-0.3*i/NumColors 1-1*i/NumColors 1-1*i/NumColors]);
     end
 end
 %%
@@ -255,7 +255,7 @@ for i=1:numel(WaveNames)
 end
 
 %%
-figure;imshow(flipud(Im1));
+figure;imshow(fliplr(rot90(Im1*1.0)));
 hold on;
 for i=1:numel(WaveNames)
     ColorInd = abs(mean(Waves.(WaveNames{i}).Amp))/(MaxIntens-MinIntens)-MinIntens/(MaxIntens-MinIntens);
@@ -265,7 +265,7 @@ for i=1:numel(WaveNames)
         tempy=medfilt1((Waves.(WaveNames{i}).y),2);
         tempx=tempx(2:end);
         tempy=tempy(2:end);
-        plot(tempx,305-tempy,'color',[1-0.3*ColorInd 1-1*ColorInd 1-1*ColorInd]);
+        plot(tempx,size(A,2)+1-tempy,'color',[1-0.3*ColorInd 1-1*ColorInd 1-1*ColorInd]);
     end
 end
 %%
@@ -291,8 +291,7 @@ for i=1:NumColors
         CurrentWaveFilt=WaveKalman(CurrentWave,q,R);
         tempx=(CurrentWaveFilt.x);
         tempy=(CurrentWaveFilt.y);
-        
-        plot(305-tempy,305-tempx,'color',[1-1*i/NumColors 1-0.3*i/NumColors 1-0.1*i/NumColors]);
+        plot(tempx,size(A,2)+1-tempy,'color',[1-1*i/NumColors 1-0.3*i/NumColors 1-0.1*i/NumColors]);
     end
 end
 
